@@ -17,39 +17,29 @@
 			<p>Every wrong answer will reveal overlapping correct catogories in green.</p>
 			<div class="answer s--sogsqurOxPw" style="">
 				<span class="guessing">e.g. </span>
-				<div class="cat">
-					<p class=" correct">artifact</p>
-					<p class="">/</p>
-				</div>
-				<div class="cat">
-					<p class=" correct">instrumentality</p>
-					<p class="">/</p>
-				</div>
-				<div class="cat">
-					<p class=" correct">container</p>
-					<p class="">/</p>
-				</div>
-				<div class="cat">
-					<p class=" correct">wheeled vehicle</p>
-					<p class="">/</p>
-				</div>
-				<div class="cat">
-					<p class=" correct">self-propelled vehicle</p>
-					<p class="">/</p>
-				</div>
-				<div class="cat">
-					<p class="">motor vehicle</p>
-					<p class="">/</p>
-				</div>
-				<div class="cat">
-					<p class="">truck</p>
-					<p class="">/</p>
-				</div>
-				<div class="cat">
-					<p class="">van</p>
-					<p class="">/</p>
-				</div>
-				<div class="cat"><p class="">police van</p></div>
+                <div class="cat">
+                    <p class=" correct">Catogery Correct</p>
+                    <p class="">/</p>
+                </div>
+                <div class="cat">
+                    <p class=" correct">Catogery Correct</p>
+                    <p class="">/</p>
+                </div>
+                <div class="cat">
+                    <p class=" correct">Catogery Correct</p>
+                    <p class="">/</p>
+                </div>
+                <div class="cat">
+                    <p class="">Catogery Wrong</p>
+                    <p class="">/</p>
+                </div>
+                <div class="cat">
+                    <p class="">Catogery Wrong</p>
+                    <p class="">/</p>
+                </div>
+                <div class="cat">
+                    <p class="">Label Wrong</p>
+                </div>
 			</div>
 			<p>You have 5 attempts to guess the right label.</p>
 		</div>
