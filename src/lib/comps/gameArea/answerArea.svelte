@@ -14,8 +14,44 @@
 		<div class="intro" transition:fly={{ delay: 0, duration: 500, easing: quintOut, y: 100 }}>
 			<p>Welcome to Labeladle</p>
 			<p>Your task is to guess the AI generated label for the highlighted segment.</p>
-			<p>Every wrong answer will reveal overlapping correct catogeries</p>
-			<p>You have 5 attempts</p>
+			<p>Every wrong answer will reveal overlapping correct catogories in green.</p>
+			<div class="answer s--sogsqurOxPw" style="">
+				<span class="guessing">e.g. </span>
+				<div class="cat">
+					<p class=" correct">artifact</p>
+					<p class="">/</p>
+				</div>
+				<div class="cat">
+					<p class=" correct">instrumentality</p>
+					<p class="">/</p>
+				</div>
+				<div class="cat">
+					<p class=" correct">container</p>
+					<p class="">/</p>
+				</div>
+				<div class="cat">
+					<p class=" correct">wheeled vehicle</p>
+					<p class="">/</p>
+				</div>
+				<div class="cat">
+					<p class=" correct">self-propelled vehicle</p>
+					<p class="">/</p>
+				</div>
+				<div class="cat">
+					<p class="">motor vehicle</p>
+					<p class="">/</p>
+				</div>
+				<div class="cat">
+					<p class="">truck</p>
+					<p class="">/</p>
+				</div>
+				<div class="cat">
+					<p class="">van</p>
+					<p class="">/</p>
+				</div>
+				<div class="cat"><p class="">police van</p></div>
+			</div>
+			<p>You have 5 attempts to guess the right label.</p>
 		</div>
 	{/if}
 	{#if $gameState != 'guessing'}
@@ -61,6 +97,30 @@
 </div>
 
 <style lang="scss">
+	span {
+		display: inline;
+		display: flex;
+		flex-wrap: wrap;
+		margin-block: 2px;
+		margin-right: 10px;
+	}
+	.cat {
+		display: inline;
+		display: flex;
+		flex-wrap: wrap;
+		margin-block: 2px;
+		p {
+			margin-block: 0px;
+
+			&.correct {
+				color: var(--green);
+			}
+		}
+	}
+
+	.failed.final {
+		color: var(--red) !important;
+	}
 	.answers {
 		overflow: auto;
 		height: 100%;

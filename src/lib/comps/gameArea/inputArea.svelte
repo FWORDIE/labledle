@@ -7,7 +7,7 @@
 	import { goto } from '$app/navigation';
 	export let data;
 	let selected: lableObject;
-	let placeHolder = 'What is this?';
+	let placeHolder = "What is this segment's label?";
 	let inputBox: HTMLElement;
 
 	const sumbit = async () => {
