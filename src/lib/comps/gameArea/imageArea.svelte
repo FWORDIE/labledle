@@ -61,6 +61,7 @@
 		border: solid 2px var(--colour);
 		position: relative;
         min-height: 200px;
+        pointer-events: none;
 
 		.guess {
 			padding: 5px 10px;
@@ -95,7 +96,7 @@
 				margin: 0px;
 				padding: 0px;
 				display: block;
-				min-width: 40vw;
+				// min-width: 40vw;
 			}
 			img.hidden {
 				opacity: 0;
