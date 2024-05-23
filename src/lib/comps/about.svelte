@@ -2,9 +2,8 @@
 
 </script>
 <p>Labeladle is a WIP 'dle' game ala WORDLE.</p>
-<p>All data is from ImageNet and this <a href="https://huggingface.co/datasets/Prisma-Multimodal/segmented-imagenet1k-subset" class="href">repo</a> with minimal edits by me.</p>
-<p>Sorry for all the dog questions.</p>
-<p>If you have a better data set please <a href="mailto:fred+labeladle@mildlyupset.com?subject=Heya">reach out.</a></p>
+<p>All data is from <a href="https://storage.googleapis.com/openimages/web/index.html" class="href">Open Images Dataset V7</a> with minimal edits by me.</p>
+<p>If you have feedback, please <a href="mailto:fred+labeladle@mildlyupset.com?subject=Heya">reach out.</a></p>
 <p>Made by <a href="https://fredwordie.com">Fred Wordie</a></p>
 <p>-</p>
 <h1>Instructions:</h1>
@@ -18,14 +17,6 @@
     </div>
     <div class="cat">
         <p class=" correct">Catogery Correct</p>
-        <p class="">/</p>
-    </div>
-    <div class="cat">
-        <p class=" correct">Catogery Correct</p>
-        <p class="">/</p>
-    </div>
-    <div class="cat">
-        <p class="">Catogery Wrong</p>
         <p class="">/</p>
     </div>
     <div class="cat">

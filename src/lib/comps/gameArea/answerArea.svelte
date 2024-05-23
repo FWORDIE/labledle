@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { answers, appState, gameState } from '$lib/store/store';
-	import type { lableObject } from '$lib/types';
+	import type { Cat } from '$lib/types';
 	import { quintOut } from 'svelte/easing';
 	import { fly, slide } from 'svelte/transition';
 	import Answer from './answer.svelte';
 	import About from '../about.svelte';
-	export let thisData: lableObject;
-	$: correctCats = thisData.cat_info;
+	export let thisData: Cat;
+	$: correctCats = thisData.cats;
 </script>
 
 <div class="answers">
@@ -23,14 +23,6 @@
                 </div>
                 <div class="cat">
                     <p class=" correct">Catogery Correct</p>
-                    <p class="">/</p>
-                </div>
-                <div class="cat">
-                    <p class=" correct">Catogery Correct</p>
-                    <p class="">/</p>
-                </div>
-                <div class="cat">
-                    <p class="">Catogery Wrong</p>
                     <p class="">/</p>
                 </div>
                 <div class="cat">
@@ -54,12 +46,12 @@
 			>
 			{#if $gameState == 'failed'}
 				<span>
-					{#each thisData.cat_info as cat, i (i)}
+					{#each thisData.cats as cat, i (i)}
 						<div class="cat">
 							<p class={$gameState}>
-								{cat.namel}
+								{cat.name}
 							</p>
-							{#if i < thisData.cat_info.length - 1}
+							{#if i < thisData.cats.length - 1}
 								<p>/</p>
 							{/if}
 						</div>

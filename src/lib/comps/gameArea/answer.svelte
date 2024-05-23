@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { pause } from '$lib/funcs';
 	import { answers, gameState } from '$lib/store/store';
-	import type { lableObject } from '$lib/types';
+	import type { Cat, CatsEntity } from '$lib/types';
 	import { onMount } from 'svelte';
 
-	export let correctCats;
+	export let correctCats:CatsEntity[];
 	export let index: number;
-	export let answer;
+	export let answer:Cat;
 
 	let colouring: boolean[] = [];
 
@@ -14,8 +14,8 @@
 		if ($answers.length - index > 5) return;
 		console.log('checking', $answers.length - index);
 		if (
-			correctCats[correctCats.length - 1].namel ===
-			answer.cat_info[answer.cat_info.length - 1].namel
+			correctCats[correctCats.length - 1].name ===
+			answer.cats[answer.cats.length - 1].name
 		) {
 			console.log('success');
 			await pause(500);
@@ -41,11 +41,11 @@
 	};
 
 	onMount(async () => {
-		colouring = new Array(answer.cat_info.length).fill(false);
-		for (let index = 0; index < answer.cat_info.length; index++) {
-			if (correctCats[index] && correctCats[index].namel === answer.cat_info[index].namel) {
+		colouring = new Array(answer.cats.length).fill(false);
+		for (let index = 0; index < answer.cats.length; index++) {
+			if (correctCats[index] && correctCats[index].name === answer.cats[index].name) {
 				await pause(500);
-				colouring[index] = correctCats[index].namel === answer.cat_info[index].namel;
+				colouring[index] = correctCats[index].name === answer.cats[index].name;
 			}
 		}
 		await pause(500);
@@ -55,12 +55,12 @@
 
 {#if $answers.length - index < 6 || $gameState !== 'guessing'}
 	<span class={$gameState}>{introText($gameState)}</span>
-	{#each answer.cat_info as cat, i (i)}
+	{#each answer.cats as cat, i (i)}
 		<div class="cat">
 			<p class:correct={colouring[i]}>
-				{cat.namel}
+				{cat.name}
 			</p>
-			{#if i < answer.cat_info.length - 1}
+			{#if i < answer.cats.length - 1}
 				<p>/</p>
 			{/if}
 		</div>

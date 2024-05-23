@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { answers, gameState, itemNum } from '$lib/store/store';
-	import type { lableObject } from '$lib/types';
+	import type { Cat } from '$lib/types';
 	import Svelecte from 'svelecte'; //@ts-ignore
 	import { nanoid } from 'nanoid';
 	import { pause, random } from '$lib/funcs';
 	import { goto } from '$app/navigation';
-	export let data;
-	let selected: lableObject;
+	export let data:Cat[];
+	let selected: Cat;
 	let placeHolder = "What is this segment's label?";
 	let inputBox: HTMLElement;
+
+    let listItems = JSON.parse(JSON.stringify(data)).sort((a:Cat,b:Cat) =>{return a.name.localeCompare(b.name)})
 
 	const sumbit = async () => {
 		if (selected) {
@@ -31,7 +33,7 @@
 		$itemNum = Math.floor(random(0, data.length - 1));
 		$answers = [];
 		$gameState = 'guessing';
-        goto('/'+$itemNum)
+        goto('/'+ random(0, 123456789))
 	};
 </script>
 
@@ -47,7 +49,7 @@
 	/> -->
 	{#if $gameState === 'guessing'}
 		<Svelecte
-			options={data}
+			options={listItems}
 			labelField="name"
 			bind:value={selected}
 			valueAsObject
@@ -58,7 +60,7 @@
 		></Svelecte>
 		<button class="button orange" on:click={sumbit}>Submit</button>
 	{:else}
-		<button class="button orange reset" on:click={reset}>Reset</button>
+		<button class="button orange reset" on:click={reset}>free play</button>
 	{/if}
 </div>
 
@@ -100,6 +102,7 @@
 		--sv-dropdown-shadow: 0 1px 3px #555;
 		--sv-dropdown-height: 20vh;
 		--sv-dropdown-active-bg: var(--green);
+        --sv-dropdown-active: var(--black);
 		--sv-dropdown-selected-bg: var(--green);
 		--sv-create-kbd-border: 1px solid #626262;
 		--sv-create-kbd-bg: #626262;
@@ -108,6 +111,15 @@
 		:global(#sv-svelecte-select-input) {
 			color: var(--white);
 		}
+        :global(.sv-dd-item-active){
+			color: var(--black);
+
+        }		
+        :global(.sv-item--wrap:hover){
+			color: var(--black);
+
+        }			
+
 	}
 	.reset {
 		width: 100%;

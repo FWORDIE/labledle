@@ -1,9 +1,30 @@
 import { redirect } from '@sveltejs/kit';
-import libary from '$lib/valTestingPrunedViewBoxSorted.json';
-import { random } from '$lib/funcs.js';
+import allItems from '$lib/data.json';
+import moment from 'moment';
+
+const daysSince = () => {
+	const day = moment();
+	const oldDate = moment('2016/01/01');
+
+	return Math.abs(day.diff(oldDate, 'days'))
+};
+
+const getNumbers = (num: number) => {
+    // console.log(num)
+	if (num < Object.values(allItems).length) {
+		num += Object.values(allItems).length;
+	}
+	const cat = num % Object.values(allItems).length;
+	const img = num % Object.values(allItems)[cat].files.length;
+    // console.log(cat,img)
+	return {
+		catNum: cat,
+		imgNum: img
+	};
+};
 
 export function load({ params }) {
-    const num = Math.floor(random(0, libary.length-1));
-    redirect(307, '/'+num)
-
+	return {
+		itemNums: getNumbers(daysSince())
+	};
 }

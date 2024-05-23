@@ -1,11 +1,23 @@
 import { redirect } from '@sveltejs/kit';
-import libary from '$lib/valTestingPrunedViewBoxSorted.json';
+import allItems from '$lib/data.json';
+
+const getNumbers  = (num:number) => {
+    if(num < Object.values(allItems).length){
+        num += Object.values(allItems).length;
+    }
+    const cat = num%Object.values(allItems).length
+    const img = num%Object.values(allItems)[cat].files.length
+    return{ 
+        catNum:cat,
+        imgNum:img
+    }
+}
 
 export function load({ params }) {
-	if (Number.isNaN(parseInt(params.slug)) || parseInt(params.slug) > libary.length) {
+	if (Number.isNaN(parseInt(params.slug))) {
 		redirect(307, '/');
 	}
 	return {
-		num: params.slug
+		itemNums: getNumbers(parseInt(params.slug))
 	};
 }

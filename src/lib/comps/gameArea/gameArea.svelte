@@ -1,23 +1,31 @@
 <script lang="ts">
-	import type { lableObject } from '$lib/types';
-	export let data: lableObject[];
+	import type { Cat } from '$lib/types';
+	export let data: Cat[];
 	import ImageArea from './imageArea.svelte';
 	import AnswerArea from './answerArea.svelte';
 	import InputArea from './inputArea.svelte';
-	import { itemNum } from '$lib/store/store';
+	import { debug, imgNum, itemNum } from '$lib/store/store';
 </script>
 
 <div class="gameArea">
-    <ImageArea thisData={data[$itemNum]}></ImageArea>
-    <AnswerArea thisData={data[$itemNum]}></AnswerArea>
-    <InputArea {data}></InputArea>
+	{#key $itemNum + $imgNum}
+		{#if $debug}
+			<div class="debug">
+				N:{$itemNum}, I: {$imgNum}, C:{data[$itemNum].name}
+			</div>
+		{/if}
+		<ImageArea thisData={data[$itemNum]}></ImageArea>
+
+		<AnswerArea thisData={data[$itemNum]}></AnswerArea>
+	{/key}
+	<InputArea {data}></InputArea>
 </div>
 
 <style lang="scss">
-    .gameArea{
-        position: relative;
-        height: 100%;
-        overflow: hidden;
-        // padding: var(--padding);
-    }
+	.gameArea {
+		position: relative;
+		height: 100%;
+		overflow: hidden;
+		// padding: var(--padding);
+	}
 </style>

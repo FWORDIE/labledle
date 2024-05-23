@@ -3,7 +3,7 @@
 
 export let data;
 </script>
-<Page {data} type='free play'></Page>
+<Page {data} type='daily'></Page>
 
 <style lang="scss">
     

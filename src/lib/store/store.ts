@@ -1,7 +1,8 @@
-import { type lableObject, type appStateType, type gameStateType } from "$lib/types";
+import { type appStateType, type gameStateType, type CatsEntity, type Cat, type gameTypeType } from "$lib/types";
 import { writable } from "svelte/store";
 
 export const itemNum = writable(-1)
+export const imgNum = writable(-1)
 
 export const maskSwitchesDummy = writable( new Array(1000).fill([]));
 
@@ -15,4 +16,6 @@ export const showImg = writable(false)
 export const appState = writable<appStateType>('playing');
 export const gameState = writable<gameStateType>('guessing');
 
-export const answers = writable<lableObject[]>([])
+export const answers = writable<Cat[]>([]);
+
+export const gameType = writable<gameTypeType>('daily')
