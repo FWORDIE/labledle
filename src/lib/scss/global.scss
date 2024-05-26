@@ -78,7 +78,16 @@ body{
             border: 2px solid var(--orange);
         
         }
+        &.green{
+            background-color: var(--green);
+            color: var(--black);
+            border: 2px solid var(--green);
+        
+        }
 
+    }
+    .hidden{
+        display: none;
     }
 
 }

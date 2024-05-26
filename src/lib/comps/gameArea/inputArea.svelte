@@ -1,16 +1,26 @@
 <script lang="ts">
-	import { answers, gameState, itemNum } from '$lib/store/store';
+	import { answers, gameState, gameType, itemNum } from '$lib/store/store';
 	import type { Cat } from '$lib/types';
 	import Svelecte from 'svelecte'; //@ts-ignore
 	import { nanoid } from 'nanoid';
 	import { pause, random } from '$lib/funcs';
 	import { goto } from '$app/navigation';
-	export let data:Cat[];
+	import moment from 'moment';
+	export let data: Cat[];
+	export let thisData: Cat;
 	let selected: Cat;
 	let placeHolder = "What is this segment's label?";
 	let inputBox: HTMLElement;
+	let textHiddenBox: HTMLElement;
+	let good = '🟩';
+	let bad = '🟧';
+	let neutral = ' ';
 
-    let listItems = JSON.parse(JSON.stringify(data)).sort((a:Cat,b:Cat) =>{return a.name.localeCompare(b.name)})
+    let shareText = 'share'
+
+	let listItems = JSON.parse(JSON.stringify(data)).sort((a: Cat, b: Cat) => {
+		return a.name.localeCompare(b.name);
+	});
 
 	const sumbit = async () => {
 		if (selected) {
@@ -25,15 +35,49 @@
 			if (autocompleteClearButton) {
 				autocompleteClearButton.click();
 			}
+			console.log($answers);
 		}
 	};
 
+	const share = async () => {
+		let text = textHiddenBox.innerHTML;
+		let string = 'Labeladle  #' + $itemNum + '\n';
+		if ($gameType === 'daily') {
+			string += $gameType + ' ' + moment().format('DD/MM/YY');
+		} else {
+			string += $gameType;
+		}
+		string += ' \n\n';
+
+		$answers.forEach((answer) => {
+			answer.cats.forEach((cat, index) => {
+				if (thisData.cats[index] && cat.name === thisData.cats[index].name) {
+					string += good;
+				} else {
+					string += bad;
+				}
+			});
+			string += '\n';
+		});
+
+		text = string;
+		try {
+			await navigator.clipboard.writeText(text);
+			console.log('Content copied to clipboard \n', string);
+            shareText = 'copied'
+		} catch (err) {
+			console.error('Failed to copy: ', err);
+		}
+	};
+
+    
 
 	const reset = () => {
+        shareText = 'share'
 		$itemNum = Math.floor(random(0, data.length - 1));
 		$answers = [];
 		$gameState = 'guessing';
-        goto('/'+ random(0, 123456789))
+		goto('/' + random(0, 123456789));
 	};
 </script>
 
@@ -58,9 +102,11 @@
 			vlHeight={2}
 			on:enterKey={sumbit}
 		></Svelecte>
-		<button class="button orange" on:click={sumbit}>Submit</button>
+		<button class="button orange" on:click={sumbit}>submit</button>
 	{:else}
+		<div class="hidden" bind:this={textHiddenBox}>help</div>
 		<button class="button orange reset" on:click={reset}>free play</button>
+		<button class="button green reset" on:click={share}>{shareText}</button>
 	{/if}
 </div>
 
@@ -102,7 +148,7 @@
 		--sv-dropdown-shadow: 0 1px 3px #555;
 		--sv-dropdown-height: 20vh;
 		--sv-dropdown-active-bg: var(--green);
-        --sv-dropdown-active: var(--black);
+		--sv-dropdown-active: var(--black);
 		--sv-dropdown-selected-bg: var(--green);
 		--sv-create-kbd-border: 1px solid #626262;
 		--sv-create-kbd-bg: #626262;
@@ -111,15 +157,12 @@
 		:global(#sv-svelecte-select-input) {
 			color: var(--white);
 		}
-        :global(.sv-dd-item-active){
+		:global(.sv-dd-item-active) {
 			color: var(--black);
-
-        }		
-        :global(.sv-item--wrap:hover){
+		}
+		:global(.sv-item--wrap:hover) {
 			color: var(--black);
-
-        }			
-
+		}
 	}
 	.reset {
 		width: 100%;

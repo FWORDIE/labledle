@@ -18,7 +18,7 @@
 
 		<AnswerArea thisData={data[$itemNum]}></AnswerArea>
 	{/key}
-	<InputArea {data}></InputArea>
+	<InputArea thisData={data[$itemNum]} {data}></InputArea>
 </div>
 
 <style lang="scss">
