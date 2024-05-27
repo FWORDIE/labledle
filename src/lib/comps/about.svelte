@@ -12,15 +12,15 @@
 <div class="answer s--sogsqurOxPw" style="">
     <span class="guessing">e.g. </span>
     <div class="cat">
-        <p class=" correct">Catogery Correct</p>
+        <p class=" correct">Category Correct</p>
         <p class="">/</p>
     </div>
     <div class="cat">
-        <p class=" correct">Catogery Correct</p>
+        <p class=" correct">Category Correct</p>
         <p class="">/</p>
     </div>
     <div class="cat">
-        <p class="">Catogery Wrong</p>
+        <p class="">Category Wrong</p>
         <p class="">/</p>
     </div>
     <div class="cat">
